@@ -8,7 +8,12 @@ async function bootstrap() {
 
   // Enable CORS
   app.enableCors();
-  app.useStaticAssets(path.join(process.cwd(), 'public'));
+
+  // You can still serve other static assets, just make sure you are not serving `index.html` by default.
+  app.useStaticAssets(path.join(process.cwd(), 'public'), {
+    // index: false, // Prevents serving index.html by default
+  });
+
   await app.listen(3000);
 }
 
